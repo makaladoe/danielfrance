@@ -69,114 +69,23 @@
             flex-direction: column;
         }
         .content {
+            width: 100%;
             margin-top: 20px;
-        }
-        .project {
-            background-color: white;
-            margin-bottom: 2em;
-            padding: 2em;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 400px;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        .project:hover {
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-        }
-        .project img {
-            width: 200px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 1em;
-            border: 4px solid #007bff;
-            transition: transform 0.3s ease-in-out;
-        }
-        .project img:hover {
-            transform: scale(1.1);
-        }
-        .project h2 {
-            margin: 0 0 0.5em 0;
-            color: #333;
-        }
-        .project p {
-            color: #666;
-            line-height: 1.5;
-        }
-        .project .values {
-            list-style-type: none;
-            padding: 0;
-            margin: 0.5em 0;
-        }
-        .project .values li {
-            margin: 0.5em 0;
-        }
-        .project a {
-            display: inline-block;
-            padding: 0.75em 1.5em;
-            margin-top: 1em;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1em;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-            position: relative;
-        }
-        .project a:hover {
-            background-color: #0056b3;
-            transform: scale(1.1);
-        }
-        .project a::after {
-            content: '\f178'; /* Right arrow icon from Font Awesome */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .navbar {
-                padding: 10px 15px;
-            }
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            .navbar ul li {
-                margin: 10px 0;
-            }
-            .container {
-                width: 90%;
-            }
-            .project {
-                max-width: 100%;
-                width: 100%;
-            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="#" class="nav-link" data-content="home">Home</a></li>
-            <li><a href="#" class="nav-link" data-content="about">About</a></li>
-            <li><a href="#" class="nav-link" data-content="contacts">Contact</a></li>
-            <li><a href="#" class="nav-link" data-content="projects">Projects</a></li>
-            <li><a href="#" class="nav-link" data-content="testimony">Testimonials</a></li>
+            <li><a href="about.html" class="nav-link" data-content="about.html">About</a></li>
+            <li><a href="contacts.html" class="nav-link" data-content="contacts.html">Contact</a></li>
+            <li><a href="projects.html" class="nav-link" data-content="projects.html">Projects</a></li>
+            <li><a href="testimony.html" class="nav-link" data-content="testimony.html">Testimonials</a></li>
             <li><a href="mailto:danielfrance2001@gmail.com"><i class="fas fa-envelope"></i> Gmail</a></li>
         </ul>
     </nav>
     <div class="container">
-        <div id="home" class="content">
+        <div id="content" class="content">
             <div class="project">
                 <img src="images/dan.jpg" alt="Daniel France">
                 <h2>Daniel France Makala</h2>
@@ -190,31 +99,19 @@
                 <a href="cv.html">View CV</a>
             </div>
         </div>
-        <div id="about" class="content" style="display: none;">
-            <h2>About Me</h2>
-            <p>Details about Daniel France Makala.</p>
-        </div>
-        <div id="contacts" class="content" style="display: none;">
-            <h2>Contact</h2>
-            <p>Contact details.</p>
-        </div>
-        <div id="projects" class="content" style="display: none;">
-            <h2>Projects</h2>
-            <p>Project details.</p>
-        </div>
-        <div id="testimony" class="content" style="display: none;">
-            <h2>Testimonials</h2>
-            <p>Testimonials details.</p>
-        </div>
     </div>
     <script>
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(event) {
                 event.preventDefault();
-                document.querySelectorAll('.content').forEach(content => content.style.display = 'none');
-                document.getElementById(this.dataset.content).style.display = 'block';
-                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
+                const contentUrl = this.getAttribute('data-content');
+                fetch(contentUrl)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('content').innerHTML = data;
+                        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+                    });
             });
         });
     </script>
