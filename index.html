@@ -24,7 +24,7 @@
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
         .navbar ul {
             display: flex;
@@ -67,6 +67,9 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+        }
+        .content {
+            margin-top: 20px;
         }
         .project {
             background-color: white;
@@ -163,28 +166,57 @@
 </head>
 <body>
     <nav class="navbar">
-        
         <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contacts.html">Contact</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="testimony.html">Testimonials</a></li>
+            <li><a href="#" class="nav-link" data-content="home">Home</a></li>
+            <li><a href="#" class="nav-link" data-content="about">About</a></li>
+            <li><a href="#" class="nav-link" data-content="contacts">Contact</a></li>
+            <li><a href="#" class="nav-link" data-content="projects">Projects</a></li>
+            <li><a href="#" class="nav-link" data-content="testimony">Testimonials</a></li>
             <li><a href="mailto:danielfrance2001@gmail.com"><i class="fas fa-envelope"></i> Gmail</a></li>
         </ul>
     </nav>
     <div class="container">
-        <div class="project">
-            <img src="images/dan.jpg" alt="Daniel France">
-            <h2>Daniel France Makala</h2>
-            <p>Bachelor of Science in Computer Science</p>
-            <p>Certified Data Communication And Networks Associate HCIA</p>
-            <ul class="values">
-                <li>Critical Thinking</li>
-                <li>Innovative</li>
-                <li>Team Work</li>
-            </ul>
-            <a href="cv.html">View CV</a>
+        <div id="home" class="content">
+            <div class="project">
+                <img src="images/dan.jpg" alt="Daniel France">
+                <h2>Daniel France Makala</h2>
+                <p>Bachelor of Science in Computer Science</p>
+                <p>Certified Data Communication And Networks Associate HCIA</p>
+                <ul class="values">
+                    <li>Critical Thinking</li>
+                    <li>Innovative</li>
+                    <li>Team Work</li>
+                </ul>
+                <a href="cv.html">View CV</a>
+            </div>
+        </div>
+        <div id="about" class="content" style="display: none;">
+            <h2>About Me</h2>
+            <p>Details about Daniel France Makala.</p>
+        </div>
+        <div id="contacts" class="content" style="display: none;">
+            <h2>Contact</h2>
+            <p>Contact details.</p>
+        </div>
+        <div id="projects" class="content" style="display: none;">
+            <h2>Projects</h2>
+            <p>Project details.</p>
+        </div>
+        <div id="testimony" class="content" style="display: none;">
+            <h2>Testimonials</h2>
+            <p>Testimonials details.</p>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                document.querySelectorAll('.content').forEach(content => content.style.display = 'none');
+                document.getElementById(this.dataset.content).style.display = 'block';
+                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
