@@ -83,6 +83,7 @@
             align-items: center;
             text-align: center;
             max-width: 400px;
+            margin: 0 auto; /* Center the project */
             transition: box-shadow 0.3s ease-in-out;
         }
         .project:hover {
@@ -167,7 +168,6 @@
 </head>
 <body>
     <nav class="navbar">
-        
         <ul>
             <li><a href="index.html" class="nav-link" data-content="index.html">Home</a></li>
             <li><a href="about.html" class="nav-link" data-content="about.html">About</a></li>
@@ -207,7 +207,7 @@
             });
         });
 
-        // Load the default page (about.html) on initial load
+        // Load the default page (index.html) on initial load
         window.addEventListener('load', () => {
             document.querySelector('.nav-link[data-content="index.html"]').click();
         });
