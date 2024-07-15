@@ -71,8 +71,6 @@
         .content {
             width: 100%;
             margin-top: 20px;
-            display: flex;
-            justify-content: center;
         }
         .project {
             background-color: white;
@@ -170,7 +168,6 @@
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="index.html" class="nav-link" data-content="index.html">Home</a></li>
             <li><a href="about.html" class="nav-link" data-content="about.html">About</a></li>
             <li><a href="contacts.html" class="nav-link" data-content="contacts.html">Contact</a></li>
             <li><a href="projects.html" class="nav-link" data-content="projects.html">Projects</a></li>
@@ -180,7 +177,18 @@
     </nav>
     <div class="container">
         <div id="content" class="content">
-            <!-- Content will be dynamically loaded here -->
+            <div class="project">
+                <img src="images/dan.jpg" alt="Daniel France">
+                <h2>Daniel France Makala</h2>
+                <p>Bachelor of Science in Computer Science</p>
+                <p>Certified Data Communication And Networks Associate HCIA</p>
+                <ul class="values">
+                    <li>Critical Thinking</li>
+                    <li>Innovative</li>
+                    <li>Team Work</li>
+                </ul>
+                <a href="cv.html">View CV</a>
+            </div>
         </div>
     </div>
     <script>
@@ -198,9 +206,9 @@
             });
         });
 
-        // Load the default page (index.html) on initial load
+        // Load the default page (about.html) on initial load
         window.addEventListener('load', () => {
-            document.querySelector('.nav-link[data-content="index.html"]').click();
+            document.querySelector('.nav-link[data-content="about.html"]').click();
         });
     </script>
 </body>
