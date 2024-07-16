@@ -49,12 +49,6 @@
             background-color: #555;
             transform: scale(1.1);
         }
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 2rem;
-            color: white;
-        }
         .container {
             width: 80%;
             margin: 100px auto 0;
@@ -141,17 +135,9 @@
         }
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 10px 15px;
-            }
             .navbar ul {
                 flex-direction: column;
                 align-items: center;
-                display: none; /* Hide menu items on mobile by default */
-            }
-            .navbar ul.show {
-                display: flex; /* Show menu items when menu toggle is clicked */
             }
             .navbar ul li {
                 margin: 10px 0;
@@ -163,16 +149,12 @@
                 max-width: 100%;
                 width: 100%;
             }
-            .menu-toggle {
-                display: block;
-            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="menu-toggle" id="mobile-menu">☰</div>
-        <ul id="nav-links">
+        <ul>
             <li><a href="index.html" class="nav-link" data-content="index.html">Home</a></li>
             <li><a href="about.html" class="nav-link" data-content="about.html">About</a></li>
             <li><a href="contacts.html" class="nav-link" data-content="contacts.html">Contact</a></li>
@@ -197,10 +179,6 @@
         </div>
     </div>
     <script>
-        document.getElementById('mobile-menu').addEventListener('click', () => {
-            document.getElementById('nav-links').classList.toggle('show');
-        });
-
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(event) {
                 event.preventDefault();
