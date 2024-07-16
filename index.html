@@ -25,7 +25,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
-            align-items: center;
         }
         .navbar ul {
             display: flex;
@@ -136,11 +135,12 @@
         /* Responsive Design */
         @media screen and (max-width: 768px) {
             .navbar ul {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row; /* Maintain horizontal layout */
+                flex-wrap: wrap; /* Allow wrapping */
+                justify-content: center; /* Center items */
             }
             .navbar ul li {
-                margin: 10px 0;
+                margin: 5px; /* Adjust margin for better spacing */
             }
             .container {
                 width: 90%;
