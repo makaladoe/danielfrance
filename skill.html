@@ -8,13 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="greeting" style="display: none;">Welcome</h1>
-        <button id="speakButton">Click to Start  skills set section</button>
+        <button id="startButton">Click to Start Skill Section</button>
+        <div id="spinnerContainer" class="spinner-container" style="display: none;">
+            <div class="spinner"></div>
+        </div>
         <div class="skills" style="display: none;">
             <h2>My Skills</h2>
             <ul id="skillList">
                 <!-- Buttons will be added dynamically here -->
             </ul>
+            <div id="skillDetails" class="skill-details" style="display: none;">
+                <!-- Skill details will be displayed here -->
+            </div>
         </div>
     </div>
 
