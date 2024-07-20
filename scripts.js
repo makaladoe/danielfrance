@@ -1,105 +1,142 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const speakButton = document.getElementById('speakButton');
-    const greetingElement = document.getElementById('greeting');
+    const startButton = document.getElementById('startButton');
+    const spinnerContainer = document.getElementById('spinnerContainer');
     const skillsContainer = document.querySelector('.skills');
     const skillList = document.getElementById('skillList');
+    const skillDetails = document.getElementById('skillDetails');
 
-    function getTimeBasedGreeting() {
-        const now = new Date();
-        const hours = now.getHours();
-        let greeting = '';
-
-        if (hours < 12) {
-            greeting = 'Good morning';
-        } else if (hours < 18) {
-            greeting = 'Good afternoon';
-        } else {
-            greeting = 'Good evening';
+    const skills = [
+        {
+            title: 'Programming Skills',
+            content: `
+                <h3>Front-End Programming:</h3>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Frameworks: React, Vue.js</li>
+                    <li>UI/UX Design</li>
+                </ul>
+                <h3>Back-End Programming:</h3>
+                <ul>
+                    <li>Python, Java, Node.js</li>
+                    <li>Frameworks: Django, Express.js</li>
+                    <li>Database Management: SQL, MongoDB</li>
+                </ul>
+                <h3>Other Key Skills:</h3>
+                <ul>
+                    <li>Version Control: Git, GitHub</li>
+                    <li>API Development: RESTful APIs, GraphQL</li>
+                    <li>Testing: Unit Testing, Integration Testing</li>
+                </ul>
+            `
+        },
+        {
+            title: 'AI Skills',
+            content: `
+                <h3>Machine Learning:</h3>
+                <ul>
+                    <li>Supervised and Unsupervised Learning</li>
+                    <li>Deep Learning with TensorFlow and Keras</li>
+                    <li>Model Evaluation and Optimization</li>
+                </ul>
+                <h3>AI Model Development and Deployment:</h3>
+                <ul>
+                    <li>Data Preprocessing and Feature Engineering</li>
+                    <li>Model Deployment with Flask and FastAPI</li>
+                    <li>Monitoring and Maintenance</li>
+                </ul>
+                <h3>Computer Vision:</h3>
+                <ul>
+                    <li>Image and Video Analysis</li>
+                    <li>Object Detection and Recognition</li>
+                    <li>OpenCV, YOLO, TensorFlow</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Development Skills',
+            content: `
+                <h3>Mobile App Development:</h3>
+                <ul>
+                    <li>React Native, Flutter</li>
+                    <li>Performance Optimization</li>
+                    <li>App Store Deployment</li>
+                </ul>
+                <h3>Web Development:</h3>
+                <ul>
+                    <li>Full-Stack Development</li>
+                    <li>Responsive Design</li>
+                    <li>SEO Optimization</li>
+                </ul>
+                <h3>API Development:</h3>
+                <ul>
+                    <li>RESTful APIs, GraphQL</li>
+                    <li>API Security and Authentication</li>
+                    <li>Documentation with Swagger</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Networking and Cybersecurity Skills',
+            content: `
+                <h3>Networking:</h3>
+                <ul>
+                    <li>Datacom Network Engineering</li>
+                    <li>Network Configuration and Management</li>
+                    <li>TCP/IP, Subnetting, Routing Protocols</li>
+                </ul>
+                <h3>Cybersecurity:</h3>
+                <ul>
+                    <li>Data Capturing and Analyzing with Wireshark</li>
+                    <li>Incident Response and Handling</li>
+                    <li>Network Security Management</li>
+                    <li>Penetration Testing and Vulnerability Assessment</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Soft Skills',
+            content: `
+                <ul>
+                    <li>Effective Communication</li>
+                    <li>Team Collaboration</li>
+                    <li>Problem-Solving</li>
+                    <li>Time Management</li>
+                    <li>Leadership and Mentoring</li>
+                </ul>
+            `
+        },
+        {
+            title: 'Technical Skills',
+            content: `
+                <ul>
+                    <li>Technical Documentation</li>
+                    <li>Equipment Maintenance</li>
+                    <li>Driving</li>
+                    <li>Advanced Troubleshooting</li>
+                </ul>
+            `
         }
+    ];
 
-        return greeting;
-    }
+    startButton.addEventListener('click', () => {
+        startButton.style.display = 'none';
+        spinnerContainer.style.display = 'block';
 
-    function speakMessage(message, rate = 1, pitch = 1) {
-        const utterance = new SpeechSynthesisUtterance(message);
-        utterance.rate = rate;
-        utterance.pitch = pitch;
-        window.speechSynthesis.speak(utterance);
-    }
-
-    const timeGreeting = getTimeBasedGreeting();
-    const fullGreeting = `${timeGreeting}, I am X bot. I am specially designed by my creator Daniel France to help you navigate through my creator's skill set. He is a great AI engineer indeed. He has made tools like me and many others to interact and help users. Click on the skill sets below you want me to help you with.`;
-
-    greetingElement.textContent = fullGreeting;
-
-    speakButton.addEventListener('click', () => {
-        speakMessage("Hello, user! " + fullGreeting, 1.1, 1.2);
         setTimeout(() => {
-            speakMessage("Is there anything specific you'd like to explore?", 1.1, 1);
-        }, 10000); // Additional speech after 10 seconds
+            spinnerContainer.style.display = 'none';
+            skillsContainer.style.display = 'block';
+            skillList.innerHTML = ''; // Clear previous buttons if any
 
-        // Show skills container and populate skill buttons
-        skillsContainer.style.display = 'block';
-        const skills = [
-            {
-                title: 'Programming Skills',
-                content: `Proficient with: 
-                    - Programming Languages: HTML, CSS, JavaScript
-                    - Backend Technologies: Python
-                    - Development Platforms: Django, React Native`
-            },
-            {
-                title: 'AI Skills',
-                content: `Top Skills: 
-                    - Machine Learning
-                    - AI Model Development and Deployment
-                    - Computer Vision
-                    - Data Analysis
-                    - Prompt Engineering`
-            },
-            {
-                title: 'Development Skills',
-                content: `Specializing in: 
-                    - Mobile App Development: React Native
-                    - Web Development: Django
-                    - API Development: RESTful APIs, GraphQL
-                    - Integration and Testing`
-            },
-            {
-                title: 'Networking and Cybersecurity Skills',
-                content: `Certified in: 
-                    - Datacom Network Engineering
-                    Top Skills: 
-                    - Cybersecurity Practices
-                    - Network Security Management
-                    - Incident Response and Handling`
-            },
-            {
-                title: 'Soft Skills',
-                content: `Key Skills: 
-                    - Communication
-                    - Teamwork
-                    - Problem-Solving
-                    - Time Management
-                    - Leadership`
-            },
-            {
-                title: 'Technical Skills',
-                content: `Advanced Skills: 
-                    - Driving
-                    - Technical Documentation
-                    - Equipment Maintenance`
-            }
-        ];
-
-        skills.forEach(skill => {
-            const button = document.createElement('button');
-            button.textContent = skill.title;
-            button.classList.add('skill-button');
-            button.addEventListener('click', () => {
-                speakMessage(skill.content);
+            skills.forEach(skill => {
+                const button = document.createElement('button');
+                button.textContent = skill.title;
+                button.classList.add('skill-button');
+                button.addEventListener('click', () => {
+                    skillDetails.innerHTML = skill.content;
+                    skillDetails.style.display = 'block';
+                });
+                skillList.appendChild(button);
             });
-            skillList.appendChild(button);
-        });
+        }, 2000); // Show skills after 2 seconds
     });
 });
